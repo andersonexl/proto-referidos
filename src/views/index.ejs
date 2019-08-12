@@ -1,0 +1,84 @@
+<% include partials/_header %>
+
+<h1>Usuarios</h1>
+<table>
+    <thead>
+        <tr>
+            <td>Cedula</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Usuario</td>
+            <td>Saldo Activo</td>
+            <td>Ganancias con Referidos</td>
+            <td>Link</td>
+            <td>Referencer</td>
+            <td>Referidos</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < usuarios.length; i++) { %>
+            <tr>
+                <td><%= usuarios[i].cedula %></td>
+                <td><%= usuarios[i].nombre %></td>
+                <td><%= usuarios[i].apellido %></td>
+                <td><%= usuarios[i].usuario %></td>
+                <td><%= usuarios[i].saldoActivo.toFixed(2) %> $</td>
+                <td><%= usuarios[i].saldoReferidos.toFixed(2) %> $</td>
+                <td><a href="/registrar/<%= usuarios[i].usuario %>"><%= usuarios[i].enlace %></a></td>
+                <td><%= usuarios[i].referencer %></td>
+                <td><%= usuarios[i].referidos %></td>
+                <td>
+                    <a href="/depositar/<%= usuarios[i]._id %>" class="btn btn-danger">Depositar</a>
+                    <a href="/retirar/<%= usuarios[i]._id %>" class="btn btn-info">Retirar</a>
+                    <a href="/reclamar/<%= usuarios[i]._id %>" class="btn btn-info">Reclamar</a>
+                    <a href="/eliminar/<%= usuarios[i]._id %>" class="btn btn-info">Eliminar</a>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>Movimientos Realizados</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Usuario</td>
+            <td>Movimiento</td>
+            <td>Monto</td>
+            <td>Monto Depositado(solo deposito -3%)</td>
+            <td>Orinoco (solo deposito 3%)</td>
+            <td>Fondo al Referencer</td>
+            <td>Fecha</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let u = 0; u < movimientos.length; u++) { %>
+            <tr>
+                <td><%= movimientos[u].usuario %></td>
+                <td><%= movimientos[u].tipoMovimiento %></td>
+                <td><%= movimientos[u].cantidadTotal.toFixed(2) %> $</td>
+                <td><%= movimientos[u].cantidadDepositada ? movimientos[u].cantidadDepositada.toFixed(2) + ' $' : '' %></td>
+                <td><%= movimientos[u].porcentajeOrinoco ? movimientos[u].porcentajeOrinoco.toFixed(2) + ' $' : '' %></td>
+                <td><%= movimientos[u].porcentajeReferencer ? movimientos[u].porcentajeReferencer.toFixed(2) + ' $' : '' %></td>
+                <td><%= movimientos[u].fechaMovimiento %></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<button><a href="/limpiar">Limpiar Historial</a></button>
+
+<hr>
+
+<h1>Orinoco</h1>
+<ul>
+    <li><h2>Ganancias Orinoco: <%= montoTotalOrinoco.toFixed(2)  %> $</h2></li>
+    <li><h2>Total de Dinero Movido: <%= montoTotalMovimientos.toFixed(2)  %> $</h2></li>
+</ul>
+
+<% include partials/_footer %>
+

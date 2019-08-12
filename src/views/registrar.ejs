@@ -1,0 +1,14 @@
+<% include partials/_header %>
+
+<h1>Registrar Nuevo Usuario</h1>
+
+<form action="/registrar/<%= usuario %>" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre...">
+    <input type="text" name="apellido" placeholder="Apellido...">
+    <input type="text" name="cedula" placeholder="Cedula...">
+    <input type="text" name="usuario" placeholder="Usuario...">
+    <input type="text" name="saldoActivo" placeholder="Saldo Inicial...">
+    <button type="submit">Registrar</button>
+</form>
+
+<% include partials/_footer %>

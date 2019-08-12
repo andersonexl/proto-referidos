@@ -1,0 +1,12 @@
+<% include partials/_header %>
+
+<h1>Retirar Fondos</h1>
+
+<p><strong><%= usuario.usuario %></strong> tus fondos actuales son: <%= usuario.fondos %> $</p>
+
+<form action="/retirar/<%= usuario._id %>" method="POST">
+    <input type="text" name="retirofondos" placeholder="Fondos...">
+    <button type="submit">Retirar</button>
+</form>
+
+<% include partials/_footer %>

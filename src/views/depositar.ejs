@@ -1,0 +1,12 @@
+<% include partials/_header %>
+
+<h1>Depositar Fondos</h1>
+
+<p><strong><%= usuario.usuario %></strong> tus fondos actuales son: <%= usuario.saldoActivo %> $</p>
+
+<form action="/depositar/<%= usuario._id %>" method="POST">
+    <input type="text" name="fondos" placeholder="Fondos...">
+    <button type="submit">Depositar</button>
+</form>
+
+<% include partials/_footer %>
